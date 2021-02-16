@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 using std::cout;
 using std::cin;
@@ -11,9 +12,11 @@ using std::fixed;
 
 struct Vector {
     double x, y;
-    
+
     void scan();
     void print();
+    double len();
+    int quadrant();
 };
 
 void Vector::scan() {
@@ -24,10 +27,29 @@ void Vector::print() {
     cout << setprecision(2) << fixed << '(' << x << "; " << y << ')';
 }
 
+double Vector::len() {
+    return sqrt(x*x + y*y);
+}
+
+int Vector::quadrant() {
+    int q = 0;
+    if (x > 0) {
+        if (y > 0) 
+            q = 1;
+        else if (y < 0)
+            q = 4; 
+    } else if (x < 0) {
+        if (y > 0) 
+            q = 2;
+        else if (y < 0)
+            q = 3;
+    }
+    return q;
+}
+
 int main() {
     Vector v;
     v.scan();
-    v.print();
-    cout << endl;
+    cout << v.quadrant() << endl;
     return 0;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 using std::cout;
 using std::cin;
@@ -11,9 +12,10 @@ using std::fixed;
 
 struct Vector {
     double x, y;
-    
+
     void scan();
     void print();
+    double len();
 };
 
 void Vector::scan() {
@@ -24,10 +26,13 @@ void Vector::print() {
     cout << setprecision(2) << fixed << '(' << x << "; " << y << ')';
 }
 
+double Vector::len() {
+    return sqrt(x*x + y*y);
+}
+
 int main() {
     Vector v;
     v.scan();
-    v.print();
-    cout << endl;
+    cout << setprecision(2) << fixed << v.len() << endl;
     return 0;
 }
