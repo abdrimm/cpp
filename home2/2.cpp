@@ -14,6 +14,9 @@ public:
     Vector();
     Vector(double, double, double);
 
+    Vector operator+(const Vector & v);
+    Vector operator-(const Vector & v);
+
     friend std::istream& operator>>(std::istream & in, Vector & v);
     friend std::ostream& operator<<(std::ostream & out, const Vector & v);
 };
@@ -30,6 +33,14 @@ Vector::Vector(double a, double b, double c) {
     z = c;
 }
 
+Vector Vector::operator+(const Vector & v) {
+    return Vector(x + v.x, y + v.y, z + v.z);
+}
+
+Vector Vector::operator-(const Vector & v) {
+    return Vector(x - v.x, y - v.y, z - v.z);
+}
+
 std::istream& operator>>(std::istream & in, Vector & v) {
     in >> v.x >> v.y >> v.z;
     return in;
@@ -41,8 +52,8 @@ std::ostream& operator<<(std::ostream & out, const Vector & v) {
 }
 
 int main() {
-    Vector v;
-    cin >> v;
-    cout << v << endl;
+    Vector v1, v2;
+    cin >> v1 >> v2;
+    cout << v1 + v2 << '\n' << v1 - v2 << endl;
     return 0;
 }
